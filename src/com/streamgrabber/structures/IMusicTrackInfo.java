@@ -7,5 +7,5 @@ public interface IMusicTrackInfo {
 	String getDuration();
 	String getAlbum();
 	String getTrackId();
-	
+	String getDownloadURL();
 }

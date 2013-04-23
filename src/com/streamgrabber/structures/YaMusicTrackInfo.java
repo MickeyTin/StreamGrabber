@@ -103,6 +103,12 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 		this.coverURL = coverURL;
 	}
 
+	@Override
+	public String getDownloadURL() {
+		//TODO:implement 
+		return null;
+	}
+
 }
 /*
  * {"id":"9361356", "storage_dir":"415b1daa.9361356", "title":"Bitch",
