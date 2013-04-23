@@ -87,7 +87,7 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 	}
 
 	@Override
-	public String getDuration() {
+	public String getDuration() {		
 		return duration;
 	}
 
