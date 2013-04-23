@@ -2,7 +2,7 @@ package com.streamgrabber.utils;
 
 import java.io.InputStream;
 
-public abstract class HTTPProxy {
+public interface HTTPProxy {
 
 	public abstract String makeRequestForString(String requestURL);
 	
