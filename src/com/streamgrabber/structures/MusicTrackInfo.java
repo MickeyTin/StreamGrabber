@@ -11,9 +11,7 @@ public class MusicTrackInfo {
 	private String albumId;
 	private String duration;
 	private String coverURL;
-	
-	
-	
+			
 	public MusicTrackInfo(String trackId, String storageDir, String title,
 			String artist, String artistId, String album, String albumId,
 			String duration, String coverURL) {		
