@@ -1,12 +1,10 @@
 package com.streamgrabber.utils;
-
 import java.io.InputStream;
-import java.util.Stack;
 
 public class YaHTTPProxy implements HTTPProxy {
 
 	private final String LIST_OF_CONTENT_REQUEST = "http://music.yandex.ru/fragment/search?";
-	private final String[] KEY_PARAMS = { "text=", "&type=", "&page=&" };
+	private final String[] LIST_OF_CONTENT_KEY_PARAMS = { "text=", "&type=", "&page=" };
 	
 	@Override
 	public String makeRequestForString(String requestURL) {
@@ -18,22 +16,22 @@ public class YaHTTPProxy implements HTTPProxy {
 
 	@Override
 	public InputStream makeRequestForStream(String requestURL) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String composeRequest(final String... paramsValue) {		
-		
-		assert(paramsValue.length <= KEY_PARAMS.length);
-		
-		StringBuilder strBuilder = new StringBuilder(LIST_OF_CONTENT_REQUEST);
-		
-		for(int i=0;i<paramsValue.length;i++){
-			strBuilder.append(KEY_PARAMS[i]);
+	public String composeRequest(String requestURL, String[] paramsKey,
+			String... paramsValue) {
+
+		assert (paramsValue.length <= paramsKey.length);
+
+		StringBuilder strBuilder = new StringBuilder(requestURL);
+
+		for (int i = 0; i < paramsValue.length; i++) {
+			strBuilder.append(paramsKey[i]);
 			strBuilder.append(paramsValue[i]);
 		}
-		
+
 		return strBuilder.toString();
 	}
 

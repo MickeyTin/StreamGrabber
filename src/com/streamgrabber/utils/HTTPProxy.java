@@ -8,5 +8,5 @@ public interface HTTPProxy {
 	
 	public abstract InputStream makeRequestForStream(String requestURL);
 	
-	public abstract String composeRequest(String... params);	
+	public abstract String composeRequest(String requestURL,String[] paramsKey,String... paramsValue);	
 }
