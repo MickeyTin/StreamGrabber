@@ -1,6 +1,6 @@
 package com.streamgrabber.structures;
 
-public class MusicTrackInfo {
+public class YaMusicTrackInfo implements IMusicTrackInfo{
 
 	private String trackId;
 	private String storageDir;
@@ -12,7 +12,7 @@ public class MusicTrackInfo {
 	private String duration;
 	private String coverURL;
 			
-	public MusicTrackInfo(String trackId, String storageDir, String title,
+	public YaMusicTrackInfo(String trackId, String storageDir, String title,
 			String artist, String artistId, String album, String albumId,
 			String duration, String coverURL) {		
 		this.trackId = trackId;
@@ -25,6 +25,7 @@ public class MusicTrackInfo {
 		this.duration = duration;
 		this.coverURL = coverURL;
 	}
+	@Override
 	public String getTrackId() {
 		return trackId;
 	}
@@ -37,12 +38,14 @@ public class MusicTrackInfo {
 	public void setStorageDir(String storageDir) {
 		this.storageDir = storageDir;
 	}
+	@Override
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	@Override
 	public String getArtist() {
 		return artist;
 	}
@@ -55,6 +58,7 @@ public class MusicTrackInfo {
 	public void setArtistId(String artistId) {
 		this.artistId = artistId;
 	}
+	@Override
 	public String getAlbum() {
 		return album;
 	}
@@ -67,6 +71,7 @@ public class MusicTrackInfo {
 	public void setAlbumId(String albumId) {
 		this.albumId = albumId;
 	}
+	@Override
 	public String getDuration() {
 		return duration;
 	}
