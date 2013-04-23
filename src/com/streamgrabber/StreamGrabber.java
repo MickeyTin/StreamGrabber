@@ -13,12 +13,10 @@ public abstract class StreamGrabber {
 		trackList = new ArrayList<IMusicTrackInfo>();		
 	}
 	
-	public abstract void requestTrackList(String trackTitle,int tracksCount);
+	abstract public void requestTrackList(String trackTitle,int tracksCount);
 	
 	public List<IMusicTrackInfo> getTrackList(){
 		return trackList;
 	}
-	
-	
 	
 }
