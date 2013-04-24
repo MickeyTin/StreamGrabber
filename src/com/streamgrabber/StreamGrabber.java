@@ -1,6 +1,7 @@
 package com.streamgrabber;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,5 +20,6 @@ public abstract class StreamGrabber {
 	}
 	
 	abstract public void requestTrackList(String trackTitle,int tracksCount) throws IOException;
+	abstract public InputStream openDownloadStream(String trackId);
 	
 }

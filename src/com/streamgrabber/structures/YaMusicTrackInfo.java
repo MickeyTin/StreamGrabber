@@ -177,7 +177,18 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 	@Override
 	public boolean hasInfo() {
 		return !title.isEmpty();
+	}
+
+	@Override
+	public String toString() {
+		return "YaMusicTrackInfo [trackId=" + trackId + ", storageDir="
+				+ storageDir + ", title=" + title + ", artist=" + artist
+				+ ", artistId=" + artistId + ", album=" + album + ", albumId="
+				+ albumId + ", duration=" + duration + ", coverURL=" + coverURL
+				+ "]";
 	}	
+	
+	
 }
 /*
  * {"id":"9361356", "storage_dir":"415b1daa.9361356", "title":"Bitch",

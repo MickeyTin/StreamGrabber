@@ -62,6 +62,11 @@ public class YaHTTPProxy extends HTTPProxy {
 			}	
 		
 		return jsonObject;
+	}	
+	
+	public static int getTracksCount(String htmlPage){
+		
+		return 0;
 	}
 	
 }

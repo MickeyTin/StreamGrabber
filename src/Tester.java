@@ -15,12 +15,12 @@ public class Tester {
 
 		StreamGrabber streamGrabber = new YaStreamGrabber();
 		try {
-			streamGrabber.requestTrackList("2pac", 0);
+			streamGrabber.requestTrackList("2pac", 1);
 			List<IMusicTrackInfo> musicList = streamGrabber.getTrackList();
 			for(IMusicTrackInfo musicInfo:musicList){
-				System.out.println(musicInfo.getTitle());
+				System.out.println(musicInfo);
 			}
-		} catch (IOException e) {		
+		} catch (IOException e) {	
 			e.printStackTrace();
 		}
 
