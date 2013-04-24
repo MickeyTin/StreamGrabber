@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Attribute;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -49,8 +50,8 @@ public class YaHTTPProxy extends HTTPProxy {
 		
 		Document doc = Jsoup.parse(HTMLelement);
 		Element element = doc.body();
-		
-		final String attrVal = element.attr(attrKey);
+				
+		final String attrVal = element.child(0).attributes().get(attrKey);
 		
 		int leftBraceIndex = attrVal.indexOf('{');
 		int rightBraceIndex = attrVal.lastIndexOf('}');

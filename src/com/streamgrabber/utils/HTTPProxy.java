@@ -35,11 +35,11 @@ public abstract class HTTPProxy {
 		
 		Document doc = Jsoup.parse(HTMLPage);
 		
-		Elements elements =  doc.getElementsByAttributeValueContaining(attrKey, attrValueContain);
+		Elements elements =  doc.getElementsByAttributeValueStarting(attrKey, attrValueContain);
 		
 		List<String> elementsList = new ArrayList<String>();
 		for(Element element:elements){
-			elementsList.add(element.html());
+			elementsList.add(element.toString());
 		}
 		
 		return elementsList;

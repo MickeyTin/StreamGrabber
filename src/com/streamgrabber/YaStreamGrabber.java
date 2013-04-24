@@ -24,7 +24,7 @@ public class YaStreamGrabber extends StreamGrabber {
 								trackTitle, "tracks", "0" }));
 
 		List<String> htmlElements = HTTPProxy.getHTMLElements(responce,
-				"class", "b-track");
+				"class", "b-track  js-track js-track-");
 
 		for (String htmlElement : htmlElements) {
 			IMusicTrackInfo musicTrackInfo = new YaMusicTrackInfo(
