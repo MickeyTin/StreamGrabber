@@ -1,5 +1,6 @@
 package com.streamgrabber;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +12,12 @@ public abstract class StreamGrabber {
 	
 	public StreamGrabber() {
 		trackList = new ArrayList<IMusicTrackInfo>();		
-	}
-	
-	abstract public void requestTrackList(String trackTitle,int tracksCount);
+	}	
 	
 	public List<IMusicTrackInfo> getTrackList(){
 		return trackList;
 	}
+	
+	abstract public void requestTrackList(String trackTitle,int tracksCount) throws IOException;
 	
 }

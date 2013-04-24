@@ -1,5 +1,9 @@
 package com.streamgrabber.structures;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 public class YaMusicTrackInfo implements IMusicTrackInfo {
 
 	private String trackId;
@@ -12,6 +16,23 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 	private String duration;
 	private String coverURL;
 
+	private static final String[] REQUIRED_JSON_KEYS = { "id", "storage_dir",
+		"title", "artist", "artist_id", "album", "album_id", "duration",
+		"cover" };
+	private static final int REQUIRED_JSON_KEYS_COUNT = 9;
+	
+	public void eraseAllData() {
+		this.trackId = "";
+		this.storageDir = "";
+		this.title = "";
+		this.artist = "";
+		this.artistId = "";
+		this.album = "";
+		this.albumId = "";
+		this.duration = "";
+		this.coverURL = "";
+	}
+	
 	public YaMusicTrackInfo(String trackId, String storageDir, String title,
 			String artist, String artistId, String album, String albumId,
 			String duration, String coverURL) {
@@ -26,6 +47,36 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 		this.coverURL = coverURL;
 	}
 
+	public YaMusicTrackInfo(String jsonObject) {				
+				
+		try {
+			if (isValidJSONobject(jsonObject)) {
+				JSONParser parser = new JSONParser();
+				JSONObject jObj = (JSONObject) parser.parse(jsonObject);
+				
+				assert(REQUIRED_JSON_KEYS_COUNT == REQUIRED_JSON_KEYS.length);
+				
+				this.trackId = (String) jObj.get(REQUIRED_JSON_KEYS[0]);
+				this.storageDir = (String) jObj.get(REQUIRED_JSON_KEYS[1]);
+				this.title = (String) jObj.get(REQUIRED_JSON_KEYS[2]);
+				this.artist = (String) jObj.get(REQUIRED_JSON_KEYS[3]);
+				this.artistId = (String) jObj.get(REQUIRED_JSON_KEYS[4]);
+				this.album = (String) jObj.get(REQUIRED_JSON_KEYS[5]);
+				this.albumId = (String) jObj.get(REQUIRED_JSON_KEYS[6]);
+				this.duration = (String) jObj.get(REQUIRED_JSON_KEYS[7]);
+				this.coverURL = (String) jObj.get(REQUIRED_JSON_KEYS[8]);
+								
+			}else{
+				eraseAllData();
+			}			
+		} catch (ParseException e) {			
+			eraseAllData();
+		} catch (Throwable e) {
+			eraseAllData();
+		}
+		
+	}
+	
 	@Override
 	public String getTrackId() {
 		return trackId;
@@ -109,6 +160,24 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 		return null;
 	}
 
+	private static boolean isValidJSONobject(String jsonObject) throws ParseException{
+		
+		JSONParser parser = new JSONParser();
+		JSONObject jObj = (JSONObject) parser.parse(jsonObject);
+		
+		for(String requiredJSONKey:REQUIRED_JSON_KEYS){
+			if(!jObj.containsKey(requiredJSONKey)){
+				return false;
+			}
+		}
+				
+		return true;
+	}
+
+	@Override
+	public boolean hasInfo() {
+		return !title.isEmpty();
+	}	
 }
 /*
  * {"id":"9361356", "storage_dir":"415b1daa.9361356", "title":"Bitch",
