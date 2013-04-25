@@ -1,4 +1,6 @@
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 import com.streamgrabber.StreamGrabber;
@@ -21,7 +23,18 @@ public class Tester {
 				System.out.println(musicInfo);
 			}
 			
-			streamGrabber.openDownloadStream(musicList.get(0).getTrackId());
+			InputStream is = streamGrabber.openDownloadStream(musicList.get(0).getTrackId());
+			
+			int bytesRead = 0;
+			byte[] bytearray = new byte[10000000];
+			while(true){
+				int currentRead =is.read(bytearray,bytesRead,10);
+				if(currentRead == -1){
+					break;
+				}
+				bytesRead += currentRead;
+				
+			}
 			
 		} catch (IOException e) {	
 			e.printStackTrace();

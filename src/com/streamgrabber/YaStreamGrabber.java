@@ -2,12 +2,15 @@ package com.streamgrabber;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
 
 import com.streamgrabber.structures.IMusicTrackInfo;
 import com.streamgrabber.structures.YaMusicTrackInfo;
 import com.streamgrabber.utils.HTTPProxy;
+import com.streamgrabber.utils.MD5Proxy;
 import com.streamgrabber.utils.YaHTTPProxy;
 
 public class YaStreamGrabber extends StreamGrabber {
@@ -87,15 +90,45 @@ public class YaStreamGrabber extends StreamGrabber {
 			 }
 			
 			 class DownloadStruct{
-				 public String host;
-				 public String ts;
-				 public String path;
-				 public String region;				 
+				 public String host="";
+				 public String ts="";
+				 public String path="";
+				 public String region="";
+				 public String s="";
+				 
+				public boolean isFilled() {
+					return !(host.isEmpty() || ts.isEmpty() || path.isEmpty()
+							|| region.isEmpty()||s.isEmpty());
+				}				 
 			 };
 			 
 			 DownloadStruct downloadStruct = new DownloadStruct();
 			 
 			 downloadStruct.host = HTTPProxy.getElementInnerText(downloadInfoXML, "regional-host");
+			 downloadStruct.path = HTTPProxy.getElementInnerText(downloadInfoXML, "path");
+			 downloadStruct.region = HTTPProxy.getElementInnerText(downloadInfoXML, "region");
+			 downloadStruct.ts = HTTPProxy.getElementInnerText(downloadInfoXML, "ts");
+			 downloadStruct.s = HTTPProxy.getElementInnerText(downloadInfoXML, "s");
+						 
+			 if(!downloadStruct.isFilled()){
+				 return null;
+			 }
+			 
+			 //step 3.5 Generate secret Key
+			 String secretKey = new MD5Proxy().MD5("XGRlBW9FXlekgbPrRHuSiA"+
+			 downloadStruct.path.substring(1) +downloadStruct.s);
+			 //step 4 : download request
+			 
+			String downloadRequest = String
+					.format("http://%s/get-mp3/%s/%s%s?track-id=%s&\region=%s&from=service-search",
+							downloadStruct.host,
+							secretKey,
+							downloadStruct.ts,
+							downloadStruct.path,
+							trackInfo.getTrackId(),
+							downloadStruct.region);
+			
+			return new URL(downloadRequest).openStream();						
 			
 		} catch (IOException e) {
 			e.printStackTrace();
