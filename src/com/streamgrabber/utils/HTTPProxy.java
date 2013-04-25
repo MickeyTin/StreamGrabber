@@ -43,5 +43,27 @@ public abstract class HTTPProxy {
 		}
 		
 		return elementsList;
+	}	
+	
+	public static String getAttributeValue(String element,String attrName){
+		
+		Document doc = Jsoup.parse(element);
+		
+		Elements elements = doc.getElementsByAttribute(attrName);
+		
+		if(elements.isEmpty()){
+			return "";
+		}
+		
+		return elements.get(0).attributes().get(attrName);		
+	}
+	
+	public static String getElementInnerText(String document,String tagName){		
+		Document doc = Jsoup.parse(document);
+		Elements elements = doc.getElementsByTag(tagName);
+		if(!elements.isEmpty()){
+			return elements.get(0).text();
+		}
+		return "";
 	}
 }

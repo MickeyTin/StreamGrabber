@@ -20,6 +20,9 @@ public class Tester {
 			for(IMusicTrackInfo musicInfo:musicList){
 				System.out.println(musicInfo);
 			}
+			
+			streamGrabber.openDownloadStream(musicList.get(0).getTrackId());
+			
 		} catch (IOException e) {	
 			e.printStackTrace();
 		}
