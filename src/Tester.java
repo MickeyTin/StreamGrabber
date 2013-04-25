@@ -23,7 +23,7 @@ public class Tester {
 				System.out.println(musicInfo);
 			}
 			
-			InputStream is = streamGrabber.openDownloadStream(musicList.get(0).getTrackId());
+			InputStream is = streamGrabber.openDownloadStream(musicList.get(10).getTrackId());
 			
 			int bytesRead = 0;
 			byte[] bytearray = new byte[10000000];
