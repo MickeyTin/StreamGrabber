@@ -104,7 +104,7 @@ public class YaStreamGrabber extends StreamGrabber {
 			 
 			 DownloadStruct downloadStruct = new DownloadStruct();
 			 
-			 downloadStruct.host = HTTPProxy.getElementInnerText(downloadInfoXML, "regional-host");
+			 downloadStruct.host = HTTPProxy.getElementInnerText(downloadInfoXML, "host");
 			 downloadStruct.path = HTTPProxy.getElementInnerText(downloadInfoXML, "path");
 			 downloadStruct.region = HTTPProxy.getElementInnerText(downloadInfoXML, "region");
 			 downloadStruct.ts = HTTPProxy.getElementInnerText(downloadInfoXML, "ts");
@@ -120,7 +120,7 @@ public class YaStreamGrabber extends StreamGrabber {
 			 //step 4 : download request
 			 
 			String downloadRequest = String
-					.format("http://%s/get-mp3/%s/%s%s?track-id=%s&\region=%s&from=service-search",
+					.format("http://%s/get-mp3/%s/%s%s?track-id=%s&/region=%s&from=service-search",
 							downloadStruct.host,
 							secretKey,
 							downloadStruct.ts,
@@ -129,11 +129,12 @@ public class YaStreamGrabber extends StreamGrabber {
 							downloadStruct.region);
 						
 			URL u = new URL(downloadRequest);
-			URLConnection uc = u.openConnection();
-			uc.connect();
+			String urlFileName = u.getFile();
+			
+			URLConnection uc = u.openConnection();			
 			
 			InputStream is =  uc.getInputStream();
-			return null; 
+			return is; 
 			
 		} catch (IOException e) {
 			e.printStackTrace();
