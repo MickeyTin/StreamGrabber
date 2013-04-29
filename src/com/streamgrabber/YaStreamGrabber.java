@@ -128,8 +128,7 @@ public class YaStreamGrabber extends StreamGrabber {
 							trackInfo.getTrackId(),
 							downloadStruct.region);
 						
-			URL u = new URL(downloadRequest);
-			String urlFileName = u.getFile();
+			URL u = new URL(downloadRequest);			
 			
 			URLConnection uc = u.openConnection();			
 			

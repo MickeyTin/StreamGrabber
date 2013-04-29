@@ -19,8 +19,12 @@ public class Tester {
 
 		StreamGrabber streamGrabber = new YaStreamGrabber();
 		try {
-			streamGrabber.requestTrackList("2pac ghetto gospel", 1);
+			streamGrabber.requestTrackList("hfjsgdhfksg", 1);
 			List<IMusicTrackInfo> musicList = streamGrabber.getTrackList();
+			if(musicList.isEmpty()){
+				System.out.print("Not found any songs");
+				return;
+			}
 			for (IMusicTrackInfo musicInfo : musicList) {
 				System.out.println(musicInfo);
 			}

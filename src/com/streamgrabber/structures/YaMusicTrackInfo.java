@@ -15,6 +15,7 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 	private String albumId;
 	private String duration;
 	private String coverURL;
+	private String extension;
 
 	private static final String[] REQUIRED_JSON_KEYS = { "id", "storage_dir",
 		"title", "artist", "artist_id", "album", "album_id", "duration",
@@ -31,6 +32,7 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 		this.albumId = "";
 		this.duration = "";
 		this.coverURL = "";
+		this.extension= ""; 
 	}
 	
 	public YaMusicTrackInfo(String trackId, String storageDir, String title,
@@ -186,7 +188,16 @@ public class YaMusicTrackInfo implements IMusicTrackInfo {
 				+ ", artistId=" + artistId + ", album=" + album + ", albumId="
 				+ albumId + ", duration=" + duration + ", coverURL=" + coverURL
 				+ "]";
+	}
+
+	@Override
+	public String getExtension() {
+		return extension;
 	}	
+	
+	public void setExtension(String extension){
+		this.extension = extension;
+	}
 	
 	
 }

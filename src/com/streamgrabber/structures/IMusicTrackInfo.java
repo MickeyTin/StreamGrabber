@@ -8,5 +8,6 @@ public interface IMusicTrackInfo {
 	String getAlbum();
 	String getTrackId();
 	String getDownloadURL();
+	String getExtension();
 	boolean hasInfo();
 }
