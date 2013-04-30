@@ -1,13 +1,10 @@
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.streamgrabber.StreamGrabber;
@@ -23,7 +20,9 @@ public class Tester {
 
 		StreamGrabber streamGrabber = new YaStreamGrabber();
 		try {
-			streamGrabber.requestTrackList("madonna", 1);
+			//streamGrabber.requestTrackList("las ketchup", 1);
+			
+			streamGrabber.requestTrackList("68298");
 			List<IMusicTrackInfo> musicList = streamGrabber.getTrackList();
 			if(musicList.isEmpty()){
 				System.out.print("Not found any songs");

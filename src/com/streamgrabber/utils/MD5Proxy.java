@@ -16,10 +16,4 @@ public class MD5Proxy {
 		    }
 		    return null;
 		}
-
-	/*
-	 *     def get_key(self, key):
-        """Get secret key for track loading"""
-        return md5('XGRlBW9FXlekgbPrRHuSiA' + key.replace('\r\n', '\n')).hexdigest()
-	 * */
 }

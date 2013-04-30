@@ -21,5 +21,6 @@ public abstract class StreamGrabber {
 	
 	abstract public void requestTrackList(String trackTitle,int tracksCount) throws IOException;
 	abstract public InputStream openDownloadStream(String trackId);
+	abstract public void requestTrackList(String albumId) throws IOException;		
 	
 }
